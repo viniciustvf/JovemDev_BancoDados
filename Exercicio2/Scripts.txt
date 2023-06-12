@@ -80,9 +80,11 @@ select p.nome, p.valor
 from produto p 
 inner join categoria c on p.categoria = c.id and c.descricao = 'CUIDADOS PESSOAIS';
 
--- Listar última compra do cliente 'to-do'
+-- Listar última compra do cliente
 select p.nome, p.valor 
 from produto p 
 inner join itens_venda iv on iv.produto = p.id
-inner join venda v on v.id = iv.venda and v.id = (select max(id) from venda)
-inner join cliente cli on cli.id = v.cliente and cli.nome = 'MARIA';
+inner join venda v on v.id = iv.venda
+inner join cliente cli on cli.id = v.cliente 
+where cli.nome = 'MARIA' and v.id = (select max(id) from venda where cliente = cli.id)
+limit 1;
