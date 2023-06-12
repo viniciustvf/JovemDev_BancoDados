@@ -1,19 +1,59 @@
-insert into categoria values (1, 'MÓVEIS'),(2, 'JARDINAGEM'),(3, 'FERRAMENTAS'),(4, 'ELETRONICOS'),(5, 'CUIDADOS PESSOAIS'),(6, 'TELEFONIA'),(7, 'ELETRODOMÉSTICO'),(8, 'PESCA'),(9, 'DECORAÇÃO'),(10, 'ESPORTE');
+insert into categoria values 
+    (1, 'MÓVEIS'),
+    (2, 'JARDINAGEM'),
+    (3, 'FERRAMENTAS'),
+    (4, 'ELETRONICOS'),
+    (5, 'CUIDADOS PESSOAIS'),
+    (6, 'TELEFONIA'),
+    (7, 'ELETRODOMÉSTICO'),
+    (8, 'PESCA'),
+    (9, 'DECORAÇÃO'),
+    (10, 'ESPORTE');
 
-insert into produto values (1, 'VARA DE PESCA', 150.0, 10, 8),(2, 'BALCAO', 200.0, 10, 1),(3, 'BARBEADOR', 199.0, 3, 5),
-						   (4, 'PÁ', 30.0, 5, 3),(5, 'LUVA', 25.0, 10, 2),(6, 'CAIXA DE SOM', 259.0, 4, 4);					
+insert into produto values 
+    (1, 'VARA DE PESCA', 150.0, 10, 8),
+    (2, 'BALCAO', 200.0, 10, 1),
+    (3, 'BARBEADOR', 199.0, 3, 5),
+    (4, 'PÁ', 30.0, 5, 3),
+    (5, 'LUVA', 25.0, 10, 2),
+    (6, 'CAIXA DE SOM', 259.0, 4, 4);
 
-insert into cidade values (1, 'TUBARÃO', 'SC'),(2, 'LAGUNA', 'SC'),(3, 'JAGUARUNA', 'SC'),
-						   (4, 'SAO PAULO', 'SP'),(5, 'RIO DE JANEIRO', 'RJ'),(6, 'TORRES', 'RS');	
-						   
-insert into endereco values (1, 'MARECHAL DEODORO', 'ALVORADA', 1),(2, 'ALTAMIRO GUIMARAES', 'CENTRO', 1),(3, 'RUA DAS ANDORINHAS', 'CASTELO', 3),
-						   (4, 'RUA DOS ANDRADAS', 'JARDIM JULIANA', 3),(5, 'RUA DO CACIQUE', 'ESMERALDA', 5),(6, 'MILIOLI GONÇALVES', 'MIRANTE', 1);	
-						   
-insert into cliente values (1, 'JOÃO', 'M', 3, '1979-05-04'),(2, 'MARIA', 'F', 2, '1994-02-07');
+insert into cidade values 
+    (1, 'TUBARÃO', 'SC'),
+    (2, 'LAGUNA', 'SC'),
+    (3, 'JAGUARUNA', 'SC'),
+    (4, 'SAO PAULO', 'SP'),
+    (5, 'RIO DE JANEIRO', 'RJ'),
+    (6, 'TORRES', 'RS');
 
-insert into venda values (1, 1, '2022-06-12'), (2, 2, '2022-06-10');
+insert into endereco values 
+    (1, 'MARECHAL DEODORO', 'ALVORADA', 1),
+    (2, 'ALTAMIRO GUIMARAES', 'CENTRO', 1),
+    (3, 'RUA DAS ANDORINHAS', 'CASTELO', 3),
+    (4, 'RUA DOS ANDRADAS', 'JARDIM JULIANA', 3),
+    (5, 'RUA DO CACIQUE', 'ESMERALDA', 5),
+    (6, 'MILIOLI GONÇALVES', 'MIRANTE', 1);
 
-insert into itens_venda values (1, 1, 2, 1), (2, 2, 1, 2), (3, 5, 2, 1), (4, 3, 1, 2), (5, 2, 2, 1), (6, 1, 8, 2), (7, 5, 1, 1), (8, 3, 7, 2), (9, 2, 5, 1), (10, 2, 2, 2), (11, 1, 5, 1);
+insert into cliente values 
+    (1, 'JOÃO', 'M', 3, '1979-05-04'),
+    (2, 'MARIA', 'F', 2, '1994-02-07');
+
+insert into venda values 
+    (1, 1, '2022-06-12'),
+    (2, 2, '2022-06-10');
+
+insert into itens_venda values 
+    (1, 1, 2, 1),
+    (2, 2, 1, 2),
+    (3, 5, 2, 1),
+    (4, 3, 1, 2),
+    (5, 2, 2, 1),
+    (6, 1, 8, 2),
+    (7, 5, 1, 1),
+    (8, 3, 7, 2),
+    (9, 2, 5, 1),
+    (10, 2, 2, 2),
+    (11, 1, 5, 1);
 
 select c.nome, c.sexo, c.data_nascimento, e.bairro, e.rua, cid.nome as cidade
 from cliente c 
@@ -29,21 +69,20 @@ inner join produto p on p.id = iv.produto;
 select c.descricao as categoria, p.nome as produto  
 from categoria c 
 left join produto p on p.categoria = c.id;
+
 -- Listar produtos com estoque disponível na loja
 select p.nome, p.quantidade_estoque 
 from produto p 
 where p.quantidade_estoque > 0;
+
 -- Lista produtos da seção de cuidados pessoais
 select p.nome, p.valor 
 from produto p 
 inner join categoria c on p.categoria = c.id and c.descricao = 'CUIDADOS PESSOAIS';
--- Listar ultima compra do cliente 'to-do'
+
+-- Listar última compra do cliente 'to-do'
 select p.nome, p.valor 
 from produto p 
 inner join itens_venda iv on iv.produto = p.id
-inner join venda v on v.id = iv.venda and v.id = (select max(id)from venda)
+inner join venda v on v.id = iv.venda and v.id = (select max(id) from venda)
 inner join cliente cli on cli.id = v.cliente and cli.nome = 'MARIA';
-
-
-
-
