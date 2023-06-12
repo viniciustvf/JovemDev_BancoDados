@@ -75,7 +75,7 @@ select p.nome, p.quantidade_estoque
 from produto p 
 where p.quantidade_estoque > 0;
 
--- Lista produtos da seção de cuidados pessoais
+-- Lista produtos da sessão de cuidados pessoais
 select p.nome, p.valor 
 from produto p 
 inner join categoria c on p.categoria = c.id and c.descricao = 'CUIDADOS PESSOAIS';
