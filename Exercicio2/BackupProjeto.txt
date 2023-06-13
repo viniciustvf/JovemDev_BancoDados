@@ -1,0 +1,290 @@
+PGDMP     !        
+    
+        {            ecommerce_vespertino    15.3    15.3 E    G
+           0    0    ENCODING    ENCODING        SET client_encoding = 'UTF8';
+                      false            H
+           0    0 
+   STDSTRINGS 
+   STDSTRINGS     (   SET standard_conforming_strings = 'on';
+                      false            I
+           0    0 
+   SEARCHPATH 
+   SEARCHPATH     8   SELECT pg_catalog.set_config('search_path', '', false);
+                      false            J
+           1262    17716    ecommerce_vespertino    DATABASE     ‹   CREATE DATABASE ecommerce_vespertino WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'Portuguese_Brazil.1252';
+ $   DROP DATABASE ecommerce_vespertino;
+                postgres    false                        2615    2200    public    SCHEMA        CREATE SCHEMA public;
+    DROP SCHEMA public;
+                pg_database_owner    false            K
+           0    0 
+   SCHEMA public    COMMENT     6   COMMENT ON SCHEMA public IS 'standard public schema';
+                   pg_database_owner    false    4            Ö            1259    17717 	   categoria    TABLE     i   CREATE TABLE public.categoria (
+    id integer NOT NULL,
+    descricao character varying(45) NOT NULL
+);
+    DROP TABLE public.categoria;
+       public         heap    postgres    false    4            Û            1259    17732    categoria_id_seq    SEQUENCE     ˆ   CREATE SEQUENCE public.categoria_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ '   DROP SEQUENCE public.categoria_id_seq;
+       public          postgres    false    214    4            L
+           0    0    categoria_id_seq    SEQUENCE OWNED BY     E   ALTER SEQUENCE public.categoria_id_seq OWNED BY public.categoria.id;
+          public          postgres    false    219            ã            1259    17816    cidade    TABLE     ƒ   CREATE TABLE public.cidade (
+    id integer NOT NULL,
+    nome character varying NOT NULL,
+    uf character varying(2) NOT NULL
+);
+    DROP TABLE public.cidade;
+       public         heap    postgres    false    4            â            1259    17815 
+   cidade_id_seq    SEQUENCE     …   CREATE SEQUENCE public.cidade_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ $   DROP SEQUENCE public.cidade_id_seq;
+       public          postgres    false    227    4            M
+           0    0 
+   cidade_id_seq    SEQUENCE OWNED BY     ?   ALTER SEQUENCE public.cidade_id_seq OWNED BY public.cidade.id;
+          public          postgres    false    226            Ù            1259    17726    cliente    TABLE     Ì   CREATE TABLE public.cliente (
+    id integer NOT NULL,
+    nome character varying(45) NOT NULL,
+    sexo character varying(1) NOT NULL,
+    endereco integer NOT NULL,
+    data_nascimento date NOT NULL
+);
+    DROP TABLE public.cliente;
+       public         heap    postgres    false    4            Ý            1259    17751    cliente_id_seq    SEQUENCE     †   CREATE SEQUENCE public.cliente_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ %   DROP SEQUENCE public.cliente_id_seq;
+       public          postgres    false    217    4            N
+           0    0    cliente_id_seq    SEQUENCE OWNED BY     A   ALTER SEQUENCE public.cliente_id_seq OWNED BY public.cliente.id;
+          public          postgres    false    221            Ø            1259    17723    endereco    TABLE     ¢   CREATE TABLE public.endereco (
+    id integer NOT NULL,
+    rua character varying NOT NULL,
+    bairro character varying NOT NULL,
+    cidade integer NOT NULL
+);
+    DROP TABLE public.endereco;
+       public         heap    postgres    false    4            Þ            1259    17758    endereco_id_seq    SEQUENCE     ‡   CREATE SEQUENCE public.endereco_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ &   DROP SEQUENCE public.endereco_id_seq;
+       public          postgres    false    216    4            O
+           0    0    endereco_id_seq    SEQUENCE OWNED BY     C   ALTER SEQUENCE public.endereco_id_seq OWNED BY public.endereco.id;
+          public          postgres    false    222            á            1259    17790    itens_venda    TABLE     ˜   CREATE TABLE public.itens_venda (
+    id integer NOT NULL,
+    produto integer NOT NULL,
+    quantidade integer NOT NULL,
+    venda integer NOT NULL
+);
+    DROP TABLE public.itens_venda;
+       public         heap    postgres    false    4            ×            1259    17720    produto    TABLE     Ä   CREATE TABLE public.produto (
+    id integer NOT NULL,
+    nome character varying(30) NOT NULL,
+    valor real NOT NULL,
+    quantidade_estoque integer NOT NULL,
+    categoria integer NOT NULL
+);
+    DROP TABLE public.produto;
+       public         heap    postgres    false    4            Ü            1259    17739    produto_id_seq    SEQUENCE     †   CREATE SEQUENCE public.produto_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ %   DROP SEQUENCE public.produto_id_seq;
+       public          postgres    false    4    215            P
+           0    0    produto_id_seq    SEQUENCE OWNED BY     A   ALTER SEQUENCE public.produto_id_seq OWNED BY public.produto.id;
+          public          postgres    false    220            à            1259    17789    produto_vendido_id_seq    SEQUENCE     Ž   CREATE SEQUENCE public.produto_vendido_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ -   DROP SEQUENCE public.produto_vendido_id_seq;
+       public          postgres    false    4    225            Q
+           0    0    produto_vendido_id_seq    SEQUENCE OWNED BY     M   ALTER SEQUENCE public.produto_vendido_id_seq OWNED BY public.itens_venda.id;
+          public          postgres    false    224            å            1259    17830    telefone    TABLE     u   CREATE TABLE public.telefone (
+    numero integer NOT NULL,
+    cliente integer NOT NULL,
+    id integer NOT NULL
+);
+    DROP TABLE public.telefone;
+       public         heap    postgres    false    4            ä            1259    17829    telefone_id_seq    SEQUENCE     ‡   CREATE SEQUENCE public.telefone_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ &   DROP SEQUENCE public.telefone_id_seq;
+       public          postgres    false    229    4            R
+           0    0    telefone_id_seq    SEQUENCE OWNED BY     C   ALTER SEQUENCE public.telefone_id_seq OWNED BY public.telefone.id;
+          public          postgres    false    228            Ú            1259    17729    venda    TABLE     s   CREATE TABLE public.venda (
+    id integer NOT NULL,
+    cliente integer NOT NULL,
+    data_venda date NOT NULL
+);
+    DROP TABLE public.venda;
+       public         heap    postgres    false    4            ß            1259    17772    venda_id_seq    SEQUENCE     „   CREATE SEQUENCE public.venda_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ #   DROP SEQUENCE public.venda_id_seq;
+       public          postgres    false    4    218            S
+           0    0    venda_id_seq    SEQUENCE OWNED BY     =   ALTER SEQUENCE public.venda_id_seq OWNED BY public.venda.id;
+          public          postgres    false    223            ˆ           2604    17733    categoria id    DEFAULT     l   ALTER TABLE ONLY public.categoria ALTER COLUMN id SET DEFAULT nextval('public.categoria_id_seq'::regclass);
+ ;   ALTER TABLE public.categoria ALTER COLUMN id DROP DEFAULT;
+       public          postgres    false    219    214            Ž           2604    17819 	   cidade id    DEFAULT     f   ALTER TABLE ONLY public.cidade ALTER COLUMN id SET DEFAULT nextval('public.cidade_id_seq'::regclass);
+ 8   ALTER TABLE public.cidade ALTER COLUMN id DROP DEFAULT;
+       public          postgres    false    227    226    227            ‹           2604    17752 
+   cliente id    DEFAULT     h   ALTER TABLE ONLY public.cliente ALTER COLUMN id SET DEFAULT nextval('public.cliente_id_seq'::regclass);
+ 9   ALTER TABLE public.cliente ALTER COLUMN id DROP DEFAULT;
+       public          postgres    false    221    217            Š           2604    17759    endereco id    DEFAULT     j   ALTER TABLE ONLY public.endereco ALTER COLUMN id SET DEFAULT nextval('public.endereco_id_seq'::regclass);
+ :   ALTER TABLE public.endereco ALTER COLUMN id DROP DEFAULT;
+       public          postgres    false    222    216                       2604    17793    itens_venda id    DEFAULT     t   ALTER TABLE ONLY public.itens_venda ALTER COLUMN id SET DEFAULT nextval('public.produto_vendido_id_seq'::regclass);
+ =   ALTER TABLE public.itens_venda ALTER COLUMN id DROP DEFAULT;
+       public          postgres    false    224    225    225            ‰           2604    17740 
+   produto id    DEFAULT     h   ALTER TABLE ONLY public.produto ALTER COLUMN id SET DEFAULT nextval('public.produto_id_seq'::regclass);
+ 9   ALTER TABLE public.produto ALTER COLUMN id DROP DEFAULT;
+       public          postgres    false    220    215                       2604    17833    telefone id    DEFAULT     j   ALTER TABLE ONLY public.telefone ALTER COLUMN id SET DEFAULT nextval('public.telefone_id_seq'::regclass);
+ :   ALTER TABLE public.telefone ALTER COLUMN id DROP DEFAULT;
+       public          postgres    false    229    228    229            Œ           2604    17773    venda id    DEFAULT     d   ALTER TABLE ONLY public.venda ALTER COLUMN id SET DEFAULT nextval('public.venda_id_seq'::regclass);
+ 7   ALTER TABLE public.venda ALTER COLUMN id DROP DEFAULT;
+       public          postgres    false    223    218            5
+          0    17717 	   categoria 
+   TABLE DATA           2   COPY public.categoria (id, descricao) FROM stdin;
+    public          postgres    false    214   xI       B
+          0    17816    cidade 
+   TABLE DATA           .   COPY public.cidade (id, nome, uf) FROM stdin;
+    public          postgres    false    227   J       8
+          0    17726    cliente 
+   TABLE DATA           L   COPY public.cliente (id, nome, sexo, endereco, data_nascimento) FROM stdin;
+    public          postgres    false    217   lJ       7
+          0    17723    endereco 
+   TABLE DATA           ;   COPY public.endereco (id, rua, bairro, cidade) FROM stdin;
+    public          postgres    false    216   ¶J       @
+          0    17790    itens_venda 
+   TABLE DATA           E   COPY public.itens_venda (id, produto, quantidade, venda) FROM stdin;
+    public          postgres    false    225   XK       6
+          0    17720    produto 
+   TABLE DATA           Q   COPY public.produto (id, nome, valor, quantidade_estoque, categoria) FROM stdin;
+    public          postgres    false    215   ©K       D
+          0    17830    telefone 
+   TABLE DATA           7   COPY public.telefone (numero, cliente, id) FROM stdin;
+    public          postgres    false    229   %L       9
+          0    17729    venda 
+   TABLE DATA           8   COPY public.venda (id, cliente, data_venda) FROM stdin;
+    public          postgres    false    218   BL       T
+           0    0    categoria_id_seq    SEQUENCE SET     ?   SELECT pg_catalog.setval('public.categoria_id_seq', 1, false);
+          public          postgres    false    219            U
+           0    0 
+   cidade_id_seq    SEQUENCE SET     <   SELECT pg_catalog.setval('public.cidade_id_seq', 1, false);
+          public          postgres    false    226            V
+           0    0    cliente_id_seq    SEQUENCE SET     =   SELECT pg_catalog.setval('public.cliente_id_seq', 1, false);
+          public          postgres    false    221            W
+           0    0    endereco_id_seq    SEQUENCE SET     >   SELECT pg_catalog.setval('public.endereco_id_seq', 1, false);
+          public          postgres    false    222            X
+           0    0    produto_id_seq    SEQUENCE SET     =   SELECT pg_catalog.setval('public.produto_id_seq', 1, false);
+          public          postgres    false    220            Y
+           0    0    produto_vendido_id_seq    SEQUENCE SET     E   SELECT pg_catalog.setval('public.produto_vendido_id_seq', 1, false);
+          public          postgres    false    224            Z
+           0    0    telefone_id_seq    SEQUENCE SET     >   SELECT pg_catalog.setval('public.telefone_id_seq', 1, false);
+          public          postgres    false    228            [
+           0    0    venda_id_seq    SEQUENCE SET     ;   SELECT pg_catalog.setval('public.venda_id_seq', 1, false);
+          public          postgres    false    223            ‘           2606    17738    categoria categoria_pk 
+   CONSTRAINT     T   ALTER TABLE ONLY public.categoria
+    ADD CONSTRAINT categoria_pk PRIMARY KEY (id);
+ @   ALTER TABLE ONLY public.categoria DROP CONSTRAINT categoria_pk;
+       public            postgres    false    214                       2606    17823    cidade cidade_pk 
+   CONSTRAINT     N   ALTER TABLE ONLY public.cidade
+    ADD CONSTRAINT cidade_pk PRIMARY KEY (id);
+ :   ALTER TABLE ONLY public.cidade DROP CONSTRAINT cidade_pk;
+       public            postgres    false    227            —           2606    17757    cliente cliente_pk 
+   CONSTRAINT     P   ALTER TABLE ONLY public.cliente
+    ADD CONSTRAINT cliente_pk PRIMARY KEY (id);
+ <   ALTER TABLE ONLY public.cliente DROP CONSTRAINT cliente_pk;
+       public            postgres    false    217            •           2606    17766    endereco endereco_pk 
+   CONSTRAINT     R   ALTER TABLE ONLY public.endereco
+    ADD CONSTRAINT endereco_pk PRIMARY KEY (id);
+ >   ALTER TABLE ONLY public.endereco DROP CONSTRAINT endereco_pk;
+       public            postgres    false    216            “           2606    17745    produto produto_pk 
+   CONSTRAINT     P   ALTER TABLE ONLY public.produto
+    ADD CONSTRAINT produto_pk PRIMARY KEY (id);
+ <   ALTER TABLE ONLY public.produto DROP CONSTRAINT produto_pk;
+       public            postgres    false    215            ›           2606    17795    itens_venda produto_vendido_pk 
+   CONSTRAINT     \   ALTER TABLE ONLY public.itens_venda
+    ADD CONSTRAINT produto_vendido_pk PRIMARY KEY (id);
+ H   ALTER TABLE ONLY public.itens_venda DROP CONSTRAINT produto_vendido_pk;
+       public            postgres    false    225            Ÿ           2606    17835    telefone telefone_pk 
+   CONSTRAINT     R   ALTER TABLE ONLY public.telefone
+    ADD CONSTRAINT telefone_pk PRIMARY KEY (id);
+ >   ALTER TABLE ONLY public.telefone DROP CONSTRAINT telefone_pk;
+       public            postgres    false    229            ™           2606    17778    venda venda_pk 
+   CONSTRAINT     L   ALTER TABLE ONLY public.venda
+    ADD CONSTRAINT venda_pk PRIMARY KEY (id);
+ 8   ALTER TABLE ONLY public.venda DROP CONSTRAINT venda_pk;
+       public            postgres    false    218            ¢           2606    17767    cliente cliente_fk 
+   FK CONSTRAINT     u   ALTER TABLE ONLY public.cliente
+    ADD CONSTRAINT cliente_fk FOREIGN KEY (endereco) REFERENCES public.endereco(id);
+ <   ALTER TABLE ONLY public.cliente DROP CONSTRAINT cliente_fk;
+       public          postgres    false    217    3221    216            ¡           2606    17824    endereco endereco_fk 
+   FK CONSTRAINT     s   ALTER TABLE ONLY public.endereco
+    ADD CONSTRAINT endereco_fk FOREIGN KEY (cidade) REFERENCES public.cidade(id);
+ >   ALTER TABLE ONLY public.endereco DROP CONSTRAINT endereco_fk;
+       public          postgres    false    227    3229    216            ¤           2606    17806    itens_venda itens_venda_fk 
+   FK CONSTRAINT     w   ALTER TABLE ONLY public.itens_venda
+    ADD CONSTRAINT itens_venda_fk FOREIGN KEY (venda) REFERENCES public.venda(id);
+ D   ALTER TABLE ONLY public.itens_venda DROP CONSTRAINT itens_venda_fk;
+       public          postgres    false    225    218    3225                        2606    17746    produto produto_fk 
+   FK CONSTRAINT     w   ALTER TABLE ONLY public.produto
+    ADD CONSTRAINT produto_fk FOREIGN KEY (categoria) REFERENCES public.categoria(id);
+ <   ALTER TABLE ONLY public.produto DROP CONSTRAINT produto_fk;
+       public          postgres    false    214    215    3217            ¥           2606    17796    itens_venda produto_vendido_fk 
+   FK CONSTRAINT        ALTER TABLE ONLY public.itens_venda
+    ADD CONSTRAINT produto_vendido_fk FOREIGN KEY (produto) REFERENCES public.produto(id);
+ H   ALTER TABLE ONLY public.itens_venda DROP CONSTRAINT produto_vendido_fk;
+       public          postgres    false    225    215    3219            ¦           2606    17836    telefone telefone_fk 
+   FK CONSTRAINT     u   ALTER TABLE ONLY public.telefone
+    ADD CONSTRAINT telefone_fk FOREIGN KEY (cliente) REFERENCES public.cliente(id);
+ >   ALTER TABLE ONLY public.telefone DROP CONSTRAINT telefone_fk;
+       public          postgres    false    229    3223    217            £           2606    17779    venda venda_fk 
+   FK CONSTRAINT     o   ALTER TABLE ONLY public.venda
+    ADD CONSTRAINT venda_fk FOREIGN KEY (cliente) REFERENCES public.cliente(id);
+ 8   ALTER TABLE ONLY public.venda DROP CONSTRAINT venda_fk;
+       public          postgres    false    218    3223    217            5
+   {   xœ-Ë=Â0ÐÙß)8¢PþF+qQ‰+;tâ6ˆ™#åbÍÀþÞ@¹ýIŽ=ÝÙb*|“ŒMbÆYJeÇHòjZRPÇ‘Â3EŽê›YÜ•{>Qídê‚qþë¨¹}½öƒuWŠÔ¸}Ú[1ìH|V«‚×À
+#¶$Î      B
+   Y   xœ-ÊK
+€0EÑñË*ºÁï<j‘–Ò”¤¹—æÆTpv.Üµ­¬÷%°$>ZæÏ#âkÖ?'‹+ÜÒ{š¡AÜî]äìƒ
+4Ò‚*ªÞ FgGD*0³      8
+   :   xœ3äôò?ÜìÏéËiÌihin©k`ªk`ÂeÄéëäéÈéÆi¶4Ñ50Ò50çŠÑãââ °	ï      7
+   ’   xœ-ŽË
+1DÏN© ),Ë}”X»^%±È‡ýPa>Gë½ñL ‚ÆqGö‰5iSB¾kCw¶c HS¿M1Ü)r¦·P›ð	Ý£ZRê£èƒ³Òâ.?¬_üyØé@KRü1³ Âœõïøˆ(·ÉÄ½pC¶öÕ]©HÍâ7­¯§í²vƒ:Øê'çÜ®ö.Ä      @
+   A   xœÊÉ
+ !CÑ³]Âa†¥ú¯'—HÏ?‚#/‚ùÃ(§ÒÓÚör—½Ý—}\½P½ƒr­å6’Ž_      6
+   l   xœÌ1ƒ0DÑzæœ òÚ^„ËÅ¸ˆ22Qp™œ-¡}úú‚ÃšuSéÖ²eƒ¨ƒ8ômÎVáÝ#ÂpK‹MµARB€2bý~Šy?^ÿ½glïóyou¹9!"òz‘üs‡Š      D
+   
+   xœ‹Ñãââ Å ©      9
+   "   xœ3ä4ä4202Ò50Ó54â2â4Bp
+¸bô¸¸¸ d‚w     
